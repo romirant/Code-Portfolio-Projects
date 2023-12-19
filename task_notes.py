@@ -74,5 +74,6 @@ Step by step Tasks:
 Advanced:
 1. Allow users to change the quantity of each item
 2. Add functionality to your programme that will offer users personalised suggesstions based on products in their cart
-3. Create a llist of products that will be displayed to the user and suers will have to choose items from this list only
+3. Create a list of products that will be displayed to the user and suers will have to choose items from this list only
 '''
+
