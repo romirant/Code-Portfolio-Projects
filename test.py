@@ -1,10 +1,4 @@
+'''
+This file is for me to test run code before adding into specific projects
 
-
-apple = 1
-
-yes = [""]
-
-
-
-this = a + b 
-"Test"
+'''
