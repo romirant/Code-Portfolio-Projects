@@ -4,33 +4,33 @@
 '''
 
 
-def add_item(_):
+def add_item(x,y):
     """Add items to my cart."""
     item = input("Please enter the name of the item you would like to add: ")
     cost = float(input("Please enter the price of that item: £"))
-    _.append(item)
-    _.append(cost)
+    x.append(item)
+    y.append(cost)
     print(f"{item} has been added to your cart successfully!")
 
 
-def view_items(_):
+def view_items(x):
     """View items in shopping list."""
-    for i, item in enumerate(_, 1):
+    for i, item in enumerate(x, 1):
             print(i, item)
 
-def delete_item(_):
+def delete_item(x):
     """Delete item from shopping list."""
-    for i, item in enumerate(_, 1):
+    for i, item in enumerate(x, 1):
         print(i, item)
         index = input("Please enter the index of the item you would like to remove:\n")
         index = int(index)-1
-        item = _[index]
-        _.pop(index)
+        item = x[index]
+        x.pop(index)
         print(f'{item} has been removed from your cart!')
 
-def sort_items(_):
+def sort_items(x):
     """Sort shopping list."""
-    _.sort()
+    x.sort()
     print("List sorted!")
 
 
@@ -39,7 +39,7 @@ items = ["Cat Food", "Dog Food", "Dog Bed", "Toys"]
 stock = {"Cat Food": 15, "Dog Food": 15, "Dog Bed": 10, "Cat Toys": 20}
 prices = {"Cat Food": 7.50, "Dog Food": 5.70, "Dog Bed": 15, "Cat Toys": 3.40}
 cart = []
-cost = []
+cost_list = []
 border = "-"*80
 welcome = "Welcome to the Pets-R-Us Shop!"
 
@@ -55,7 +55,7 @@ while True:
                     "\nI would like to: ")
     print(border)
     if menu == "1":
-        add_item(cart)
+        add_item(cart,cost_list)
     elif menu == "2":
         view_items(cart)
     elif menu == "3":
