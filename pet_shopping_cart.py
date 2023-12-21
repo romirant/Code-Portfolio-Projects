@@ -10,7 +10,8 @@ def add_item(x,y):
     cost = float(input("Please enter the price of that item: £"))
     x.append(item)
     y.append(cost)
-    print(f"{item} has been added to your cart successfully!")
+    print(f"\n{item} has been added to your cart successfully!")
+    print("-"*80)
 
 
 def view_items(x):
@@ -67,6 +68,8 @@ while True:
         print("Goodbye!")
         break
     else:
-        print("That is not a valid option\n")
+        print("\n")
+        print("That is not a valid option")
+        print("-"*80)
 
 
