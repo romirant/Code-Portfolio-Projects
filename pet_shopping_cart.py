@@ -40,8 +40,7 @@ def total_cost(x,p_dict):
     total_price = 0
     for item in x:
         total_price += p_dict.get(item)
-    return total_price
-        
+    print(f"Your total is: £{total_price}") 
 
 
 
@@ -66,7 +65,7 @@ print(border)
 while True:
     # Ask user to select an option form the menu
     menu = input("Please select an option below:\n1: Add item\n2: View List"\
-                "\n3: Delete item\n4: Sort List\n0: Exit\n"\
+                "\n3: Delete item\n4: Sort List\n5: Total Cost\n0: Exit\n"\
                     "\nI would like to: ")
     print(border)
     # if menu == "1":
@@ -98,6 +97,8 @@ while True:
             delete_item(cart)
         case "4":
             sort_items(cart)
+        case "5":
+            total_cost(cart, prices)
         case "0":
             #Exit program
             print("Goodbye!")
