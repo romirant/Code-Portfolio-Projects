@@ -18,7 +18,7 @@ def add_item(x, p_dict):
 def view_items(x):
     """View items in shopping list."""
     for i, item in enumerate(x, 1):
-            print(i, item)
+        print(i, item)
 
 def delete_item(x):
     """Delete item from shopping list."""
@@ -40,7 +40,7 @@ def total_cost(x,p_dict):
     total_price = 0
     for item in x:
         total_price += p_dict.get(item)
-    print(f"Your total is: £{total_price}") 
+    print(f"Your total is: £{total_price}")
 
 
 
@@ -57,9 +57,9 @@ welcome = "Welcome to the Pets-R-Us Shop!"
 
 
 
-print(border)
-print(welcome)
-print(border)
+
+print(border + "\n" + welcome + "\n" + border)
+
 
 
 while True:
