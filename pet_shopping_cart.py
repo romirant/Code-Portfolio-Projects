@@ -2,47 +2,141 @@
 
 
 '''
+class Item:
+    def __init__(self, name, cost, quantity):
+        self.name = name
+        self.cost = cost
+        self.quantity = quantity
 
+# def add_item(x, p_dict, s_dict):
+#     """Add items to my cart."""
 
-def add_item(x, p_dict, s_dict):
-    """Add items to my cart."""
+#     # Display available items
+#     while True:
+#         for key, value in p_dict.items():
+#             item_stock = s_dict.get(key, 0)  # Get stock level, default to 0 if not found
+#             print(f"{key}:\t£{value}\tStock: {item_stock}")
 
-    # Display available items
+#         # Ask the user for the item they want to add
+#         item = input("Enter the name of the item you would like to add (or -1 to return to the menu): ")
+
+#         if int(item) == -1:
+#             break
+#         else:
+#             # Convert the item to title case (sentence case for multi-word strings)
+#             item = item.title()
+
+#             # Check if the item is in the product dictionary and in stock
+#             if item in p_dict and s_dict.get(item, 0) > 0:
+#                 # Ask for the quantity
+#                 quantity = input(f"How many of {item} would you like to add? ")
+#                 try:
+#                     quantity = int(quantity)
+#                     # Check if the requested quantity is available
+#                     if quantity <= s_dict[item]:
+#                         # Add the item and quantity to the cart
+#                         x.append((item, quantity))
+#                         # Update the stock dictionary
+#                         s_dict[item] -= quantity
+#                         print(f"\n{quantity} of {item} have been added to your cart successfully!\n" + "-"*80)
+#                         break
+#                     else:
+#                         print(f"\nWe do not have enough stock for {quantity} of {item}. Please try a smaller amount.\n")
+#                 except ValueError:
+#                     print("\nPlease enter a valid number for the quantity.\n")
+#             else:
+#                 print("\nI'm sorry but that item is not available or out of stock, please try again\n" + "-"*80)
+
+def validate_string_input(prompt):
     while True:
-        for key, value in p_dict.items():
-            item_stock = s_dict.get(key, 0)  # Get stock level, default to 0 if not found
-            print(f"{key}:\t£{value}\tStock: {item_stock}")
-
-        # Ask the user for the item they want to add
-        item = input("Enter the name of the item you would like to add (or -1 to return to the menu): ")
-
-        if int(item) == -1:
-            break
+        value = input(prompt)
+        if value.isalpha():
+            return value
         else:
-            # Convert the item to title case (sentence case for multi-word strings)
-            item = item.title()
+            print("\nInvalid input. Please enter a valid string value.")
 
-            # Check if the item is in the product dictionary and in stock
-            if item in p_dict and s_dict.get(item, 0) > 0:
-                # Ask for the quantity
-                quantity = input(f"How many of {item} would you like to add? ")
-                try:
-                    quantity = int(quantity)
-                    # Check if the requested quantity is available
-                    if quantity <= s_dict[item]:
-                        # Add the item and quantity to the cart
-                        x.append((item, quantity))
-                        # Update the stock dictionary
-                        s_dict[item] -= quantity
-                        print(f"\n{quantity} of {item} have been added to your cart successfully!\n" + "-"*80)
-                        break
-                    else:
-                        print(f"\nWe do not have enough stock for {quantity} of {item}. Please try a smaller amount.\n")
-                except ValueError:
-                    print("\nPlease enter a valid number for the quantity.\n")
+def validate_float_input(prompt):
+    while True:
+        value = input(prompt)
+        try:
+            value = float(value)
+            if value > 0:
+                return value
             else:
-                print("\nI'm sorry but that item is not available or out of stock, please try again\n" + "-"*80)
+                print("\nInvalid input. Please enter a positive float value.")
+        except ValueError:
+            print("\nInvalid input. Please enter a valid float value.")
 
+def validate_int_input(prompt):
+    while True:
+        value = input(prompt)
+        try:
+            value = int(value)
+            if value > 0:
+                return value
+            else:
+                print("\nInvalid input. Please enter a positive value.")
+        except ValueError:
+            print("\nInvalid input. Please enter a valid integer value.")
+
+def choice_validation():
+    while True:
+        choice = input("\nEnter your choice (y/n) or -1 to go back to the main menu: ")
+        if choice.lower() == "y" or choice.lower() == "n":
+            return choice
+        elif choice == "-1":
+            return -1
+        else:
+            print("\nInvalid choice. Please choose y/n or -1")
+
+def add_item():
+
+    name = validate_string_input("\nWhat is the item you would to add to your cart: ")
+    while True:
+        print(f"\nYou have added {name}, is that correct?")
+        name_check = choice_validation()
+        match name_check:
+            case "y":
+                name = name.title()
+                break
+            case "n":
+                name = validate_string_input("\nWhat is the item you would to add to your cart: ")
+                continue
+            case -1:
+                return
+
+
+    cost = validate_float_input("\nWhat is the cost of the item: £")
+    while True:
+        print(f"\nThe cost is £{cost:.2f}, is that correct?")
+        cost_check = choice_validation()
+        match cost_check:
+            case "y":
+                cost = float(cost)
+                break
+            case "n":
+                cost = validate_float_input("\nWhat is the cost of the item: £")
+                continue
+            case -1:
+                return
+
+
+    quantity = validate_int_input("\nHow many of the item would you like to add: ")
+    while True:
+        print(f"\nYou would like to add {quantity}, is that correct?")
+        quantity_check = choice_validation()
+        match quantity_check:
+            case "y":
+                break
+            case "n":
+                quantity = validate_int_input("\nHow many of the item would you like to add: ")
+                continue
+            case -1:
+                return
+
+
+    new_item = Item(name, cost, quantity)
+    cart.append(new_item)
 
 
 
@@ -108,7 +202,7 @@ while True:
 
     match menu:
         case "1":
-            add_item(cart, prices, stock)
+            add_item()
         case "2":
             view_items(cart)
         case "3":
