@@ -17,11 +17,11 @@ story_templates = [
 ]
 
 input_categories = {
-    "noun": "Enter a noun: ",
-    "verb": "Enter a verb: ",
-    "place": "Enter a place: ",
-    "adverb": "Enter an adverb: ",
-    "adjective": "Enter an adjective: ",
+    "noun": "",
+    "verb": "",
+    "place": "",
+    "adverb": "",
+    "adjective": "",
 }
 
 story_template = random.choice(story_templates)
@@ -31,7 +31,7 @@ user_inputs = {category: [] for category in input_categories}
 # Determine the number of occurrences for each input category in the story template
 for category, _ in input_categories.items():
     count = len(re.findall(r"\{" + category + r"\[\d+\]\}", story_template))
-    user_inputs[category] = [input(f"Enter {category.capitalize()} {i + 1}: ") for i in range(count)]
+    user_inputs[category] = [input(f"Enter a/an {category.capitalize()} {i + 1}: ") for i in range(count)]
 
 # Replace the placeholders in the story template with user inputs
 for category, inputs in user_inputs.items():
